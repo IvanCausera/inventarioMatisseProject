@@ -1,0 +1,270 @@
+﻿<mah:MetroWindow x:Class="di.proyecto.clase.ribbon.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:di.proyecto.clase.ribbon"
+        xmlns:fluent="urn:fluent-ribbon"
+        mc:Ignorable="d"
+        Icon="/Recuersos/Iconos/iesHenriMatisse_logo.png"
+        Title="Inventario Matisse" Height="450" Width="800">
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Usuario: " VerticalAlignment="Center"/>
+                <TextBlock x:Name="tbUserLogin" VerticalAlignment="Center"/>
+                <mat:PopupBox PlacementMode="BottomAndAlignRightEdges" HorizontalAlignment="Right" StaysOpen="False">
+                    <StackPanel Width="150">
+                        <Button x:Name="Ajustes" Height="30">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Ajustes" Grid.Column="0"></TextBlock>
+                                <mat:PackIcon Kind="Tools" Grid.Column="1" Margin="0,0,0,10"></mat:PackIcon>
+                            </Grid>
+                        </Button>
+
+                        <Button x:Name="Cuenta" Height="30" Width="150">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Cuenta" Grid.Column="0"></TextBlock>
+                                <mat:PackIcon Kind="User" Grid.Column="1" Margin="0,0,0,10"></mat:PackIcon>
+                            </Grid>
+                        </Button>
+
+                        <Button x:Name="Ayuda" Height="30" Width="150">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Ayuda" Grid.Column="0"></TextBlock>
+                                <mat:PackIcon Kind="QuestionMark" Grid.Column="1" Margin="0,0,0,10"></mat:PackIcon>
+                            </Grid>
+                        </Button>
+
+                        <Separator></Separator>
+
+                        <Button x:Name="Desconectar" Click="Desconectar_Click" Height="30" Width="150">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Desconectar" Grid.Column="0"></TextBlock>
+                                <mat:PackIcon Kind="Power" Grid.Column="1" Margin="0,0,0,10"></mat:PackIcon>
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+                </mat:PopupBox>
+            </StackPanel>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+    <DockPanel>
+        <fluent:Ribbon DockPanel.Dock="Top">
+            <fluent:Ribbon.Menu>
+                <fluent:Backstage>
+                    <fluent:BackstageTabControl>
+                        <fluent:BackstageTabItem Header="Opciones" />
+                        <fluent:Button Header="Opcion 1"/>
+                    </fluent:BackstageTabControl>
+                </fluent:Backstage>
+            </fluent:Ribbon.Menu>
+
+            <!--Ribbon Item Prestamos-->
+            <fluent:RibbonTabItem Header="PRESTAMOS">
+                <fluent:RibbonGroupBox Header="Operaciones">
+                    <fluent:Button Header="Salida">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="ExitRun" Height="30" Width="30" Foreground="#e74c3c"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Devolución">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="LocationEnter" Height="30" Width="30" Foreground="#333333"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Header="Búsquedas">
+                    <StackPanel>
+                        <TextBlock Text="Por número de serie" FontWeight="Bold" Margin="10, 5"/>
+                        <TextBox Width="150" Height="25" BorderBrush="Gray" BorderThickness="1"/>
+                    </StackPanel>
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Header="Listados">
+                    <fluent:Button Header="Pendientes" Foreground="#ff4f0e">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="ListStatus" Height="30" Width="30" Foreground="#ff4f0e"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+            <!--Ribbon Item Articulos-->
+            <fluent:RibbonTabItem Header="ARTÍCULOS">
+                <!--Group Articulos-->
+                <fluent:RibbonGroupBox Header="Artículos" >
+                    <fluent:Button Header="Nuevo" x:Name="rbtnAddArticulo" Click="rbtnAddArticulo_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="ArchivePlus" Height="30" Width="30" Foreground="#34495e"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Nuevo" x:Name="rbtnAddMVArticulo" Click="rbtnAddMVArticulo_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="ArchivePlus" Height="30" Width="30" Foreground="Red"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Editar">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="Archive" Height="30" Width="30" Foreground="#9b59b6"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Listado" x:Name="rbtnListaArticulo" Click="rbtnListaArticulo_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="ViewListOutline" Height="30" Width="30" Foreground="DarkBlue"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Tipo Articulo" x:Name="rbtnTipoArticulo" Click="rbtnTipoArticulo_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="FormatListBulleted" Height="30" Width="30" Foreground="#eda869"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+                <!--Group Modelo Articulo-->
+                <fluent:RibbonGroupBox x:Name="Employee" Header="Modelo Artículo">
+                    <fluent:Button Header="Nuevo" x:Name="rbtnAddModeloArticulo" Click="rbtnAddModeloArticulo_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="AlphaXBox" Height="30" Width="30" Foreground="#34495e"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Nuevo" x:Name="rbtnAddMVVMModeloArticulo" Click="rbtnAddMVVMModeloArticulo_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="GoogleDownasaur" Height="30" Width="30" Foreground="#34495e"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Editar">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="ArchiveEditOutline" Height="30" Width="30"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Listado" x:Name="rbtnListaModeloArticulo" Click="rbtnListaModeloArticulo_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="FormatListBulleted" Height="30" Width="30" Foreground="#eda869"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+            <!--Ribbon Item Administracion-->
+            <fluent:RibbonTabItem Header="ADMINISTRACIÓN">
+                <!--Group Gestion Usuarios-->
+                <fluent:RibbonGroupBox Header="Gestión Usuarios">
+                    <fluent:Button Header="Nuevo" x:Name="rbtnAddUsuario" Click="rbtnAddUsuario_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="UserPlus" Height="30" Width="30" Foreground="#34495e"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Nuevo" x:Name="rbtnMVVMAddUsuario" Click="rbtnMVVMAddUsuario_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="UserPlus" Height="30" Width="30" Foreground="Red"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Editar">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="User" Height="30" Width="30" Foreground="#1abc9c"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Contraseñas">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="Password" Height="30" Width="30" Foreground="#e74c3c"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Listado" x:Name="rbtnListaUsuario" Click="rbtnListaUsuario_Click"> 
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="UserMultiple" Height="30" Width="30" Foreground="Gray"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Arbol Grupo" x:Name="rbtnArbolGrupo" Click="rbtnArbolGrupo_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="Group" Height="30" Width="30" Foreground="Gray"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+                <!--Group Mantenimiento-->
+                <fluent:RibbonGroupBox Header="Mantenimiento">
+                    <fluent:Button Header="Articulo" Foreground="#8b0000">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="TrashCan" Height="30" Width="30" Foreground="#8b0000"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Modelo" Foreground="#ff0000">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="DeleteCircle" Height="30" Width="30" Foreground="#ff0000"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Usuario" Foreground="#ff4500">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="UserRemove" Height="30" Width="30" Foreground="#ff4500"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+                <!--Group STOCK-->
+                <fluent:RibbonGroupBox Header="STOCK">
+                    <fluent:Button>
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="ClipboardText" Height="35" Width="35"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+            <!--Ribbon Item Inentario-->
+            <fluent:RibbonTabItem Header="INVENTARIO">
+                <!--Group Espacios-->
+                <fluent:RibbonGroupBox Header="Espacios" >
+                    <fluent:Button Header="Espacios">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="Domain" Height="30" Width="30" />
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Chequeo">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="CheckAll" Height="30" Width="30"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                    <fluent:Button Header="Inventario">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="Warehouse" Height="30" Width="30" Foreground="#6cb4e5"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+            <!--Ribbon Item informacion-->
+            <fluent:RibbonTabItem Header="INFORMACIÓN">
+                <!--Group Informes-->
+                <fluent:RibbonGroupBox Header="Informes" >
+                    <fluent:Button Header="Informes">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="FormatListBulleted" Height="30" Width="30" Foreground="#83cf94"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+                <!--Group Graficos -->
+                <fluent:RibbonGroupBox Header="Espacios" >
+                    <fluent:Button Header="Charts">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="ChartSankey" Height="30" Width="30" Foreground="#1d99e8"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+        </fluent:Ribbon>
+        <Grid x:Name="gridCentral">
+            
+        </Grid>
+    </DockPanel>
+    </mah:MetroWindow>

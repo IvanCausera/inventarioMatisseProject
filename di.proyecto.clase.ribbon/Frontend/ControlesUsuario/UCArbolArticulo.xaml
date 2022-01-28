@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="di.proyecto.clase.ribbon.Frontend.ControlesUsuario.UCArbolArticulo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ent="clr-namespace:di.proyecto.clase.ribbon.Backend.Modelo"
+             xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:di.proyecto.clase.ribbon.Frontend.ControlesUsuario"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <Grid DockPanel.Dock="top">
+            <TextBlock Text="ARBOL ARTICULO" FontSize="20"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+        </Grid>
+        <Grid DockPanel.Dock="Left">
+            <TreeView x:Name="treeArticulo" SelectedItemChanged="treeArticulo_SelectedItemChanged">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type ent:tipoarticulo}"
+                                               ItemsSource="{Binding Path=modeloarticulo}">
+                        <StackPanel Orientation="Horizontal">
+                            <mat:PackIcon Kind="Package" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding Path=nombre}"/>
+                            <TextBlock Text=" - ("/>
+                            <TextBlock Text="{Binding Path=modeloarticulo.Count}"/>
+                            <TextBlock Text=")"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type ent:modeloarticulo}"
+                                              ItemsSource="{Binding Path=articulo}"> <!--MultiBinding-->
+                        <StackPanel Orientation="Horizontal">
+                            <mat:PackIcon Kind="PackageOpen" Margin="0,0,5,0"/>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} - ({1})">
+                                        <Binding Path="nombre"/>
+                                        <Binding Path="articulo.Count"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type ent:articulo}">
+                        <StackPanel Orientation="Horizontal">
+                            <mat:PackIcon Kind="PackageVariant" Margin="0,0,5,0"/>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} - ({1})">
+                                        <Binding Path="numserie"/>
+                                        <Binding Path="salida.Count"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+        </Grid>
+        <Grid>
+            <DataGrid x:Name="dgPrestamos" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="USUARIO" Binding="{Binding usuario1}"/>
+                    <DataGridTextColumn Header="NUMERO DE SERIE" Binding="{Binding articulo1.numserie}"/>
+                    <DataGridTextColumn Header="FECHA DE PRÉSTAMO" Binding="{Binding fechasalida, StringFormat=dd/MM/yyyy}"/>
+                    <DataGridTextColumn Header="FECHA DE DEVOLUCIÓN" Binding="{Binding fechadevolucion, StringFormat=dd/MM/yyyy}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</UserControl>

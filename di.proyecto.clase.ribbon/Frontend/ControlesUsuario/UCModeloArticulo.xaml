@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="di.proyecto.clase.ribbon.Frontend.ControlesUsuario.UCModeloArticulo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:di.proyecto.clase.ribbon.Frontend.ControlesUsuario"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <CheckBox Content="Agrupar por marca " x:Name="checkMarca"
+                      VerticalAlignment="Center"
+                      Checked="checkMarca_Checked" Unchecked="checkMarca_Unchecked"/>
+            <Rectangle Width="1" Fill="White" Margin="0,5,0,5"
+                       HorizontalAlignment="Right"/>
+            <ComboBox x:Name="comboFiltroTipoArticulo" Margin="10, 0, 0, 0"
+                      VerticalAlignment="center" Width="200"
+                      IsEditable="True" Text="Seleciona un tipo de articulo"
+                      ItemsSource="{Binding listaTipos}"
+                      SelectedItem="{Binding tipoSeleccionado}"
+                      DisplayMemberPath="nombre"
+                      SelectionChanged="comboFiltroTipoArticulo_SelectionChanged"
+                      Grid.Column="1"/>
+            <TextBlock Text="Nombre o la marca del articulo: "
+                       VerticalAlignment="Center" Margin="15, 0, 0, 0"
+                       Grid.Column="2"/>
+            <TextBox x:Name="txtFiltro" Width="150"
+                     VerticalAlignment="Center"
+                     TextChanged="txtFiltro_TextChanged"
+                     Text="{Binding textNombreMarca, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Column="3"/>
+            <CheckBox Content="10 articulos" x:Name="checkNumArticulos"
+                      VerticalAlignment="Center" Margin="10,0,0,0"
+                      Checked="checkNumArticulos_Checked" Unchecked="checkNumArticulos_Unchecked"
+                      IsChecked="{Binding masDe10Art}"
+                      Grid.Column="4"/>
+            <Button x:Name="btnFiltroCombinado" Click="btnFiltroCombinado_Click"
+                    Grid.Column="5"  Margin="10,5,0,5"
+                    Style="{StaticResource MaterialDesignOutlinedButton}">
+                <mat:PackIcon Kind="FilterMinus" Foreground="Black"/>
+            </Button>
+            <Button x:Name="btnQuitFiltros" Click="btnQuitFiltros_Click"
+                    HorizontalAlignment="Left" Margin="10, 0, 0, 0"
+                    Background="Transparent" BorderBrush="Transparent"
+                    Grid.Column="6">
+                <mat:PackIcon Kind="FilterMinus" Foreground="Red"/>
+            </Button>
+            
+            <Separator Grid.Row="1" Grid.ColumnSpan="5"/>
+        </Grid>
+        <Grid>
+            <DataGrid x:Name="dgModeloArticulo" AutoGenerateColumns="False" CanUserAddRows="False"
+                  ColumnWidth="*" IsReadOnly="True" ItemsSource="{Binding listaModelos}"
+                      SelectedItem="{Binding modeloNuevo}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                                    Binding="{Binding nombre}">
+                        <DataGridTextColumn.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <mat:PackIcon Kind="Rename" Margin="0,0,5,0"/>
+                                <TextBlock Text="NOMBRE DEL MODELO"/>
+                            </StackPanel>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTemplateColumn Header="MARCA - MODELO">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <mat:PackIcon Kind="Package" Foreground="DarkRed" Margin="0,0,10,0"/>
+                                    <TextBlock Text="{Binding marca}"/>
+                                    <TextBlock Text=" - "/>
+                                    <TextBlock Text="{Binding modelo}" FontWeight="Bold"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="MODELO"
+                                    Binding="{Binding modelo}"/>
+                    <DataGridTextColumn Header="TIPO ARTICULO"
+                                    Binding="{Binding tipoarticulo.nombre}"/>
+                    <DataGridTextColumn Header="DESCRIPCIÓN"
+                                    Binding="{Binding descripcion}"/>
+                </DataGrid.Columns>
+
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem x:Name="menuEditar" Click="menuEditar_Click">
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <mat:PackIcon Kind="Edit" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Editar"/>
+                                </StackPanel>
+                            </MenuItem.Header>
+                        </MenuItem>
+                        <MenuItem x:Name="menuBorrar" Click="menuBorrar_Click">
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <mat:PackIcon Kind="Delete" Margin="0,0,10,0" Foreground="Red"/>
+                                    <TextBlock Text="Borrar"/>
+                                </StackPanel>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="LISTADO DE ARTÍCULOS"
+                                       Margin="10" FontSize="24"
+                                           VerticalAlignment="Center"/>
+                                <Button x:Name="btnCierraSeleccion" Click="btnCierraSeleccion_Click"
+                                        Margin="10,0,0,0" Grid.Column="1"
+                                        VerticalAlignment="Center" 
+                                        HorizontalAlignment="Right"
+                                        Height="32" Width="32"
+                                        Style="{StaticResource MahApps.Styles.Button.Circle}">
+                                    <mat:PackIcon Kind="AlphaXBox" Foreground="DarkRed"
+                                                  Height="24" Width="24"/>
+                                </Button>
+                            </Grid>
+                            <Grid>
+                                <DataGrid AutoGenerateColumns="False" CanUserAddRows="False"
+                                      ItemsSource="{Binding articulo}" Background="Gray"
+                                          GridLinesVisibility="None">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="NÚMERO DE SERIE" Binding="{Binding numserie}"/>
+                                        <DataGridTextColumn Header="ESTADO" Binding="{Binding estado}"/>
+                                        <DataGridTextColumn Header="FECHA DE ALTA" Binding="{Binding fechaalta, StringFormat=dd/MM/yyyy}"/>
+                                        <DataGridTextColumn Header="NÚMERO DE SERIE" Binding="{Binding numserie}"/>
+                                        <DataGridTextColumn Header="DEPARTAMENTO" Binding="{Binding departamento1.nombre}"/>
+
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </DockPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</UserControl>

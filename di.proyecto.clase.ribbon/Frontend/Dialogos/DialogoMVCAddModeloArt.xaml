@@ -1,0 +1,84 @@
+﻿<mah:MetroWindow x:Class="di.proyecto.clase.ribbon.Frontend.Dialogos.DialogoMVCAddModeloArt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:di.proyecto.clase.ribbon.Frontend.Dialogos"
+        mc:Ignorable="d"
+        ResizeBorderThickness="0"
+        Icon="/Recuersos/Iconos/iesHenriMatisse_logo.png"
+        Title="GESTION MODELO ARTICULO" SizeToContent="WidthAndHeight">
+    <DockPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/> <!-- Descripcion -->
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Popup x:Name="popCorrecto"
+                Placement="Center" IsOpen="False">
+                <StackPanel Background="Gray">
+                    <mat:PackIcon Kind="AboutCircle" Margin="0, 10" Width="32" Height="32"
+                                  HorizontalAlignment="Center" Foreground="White"/>
+                    <TextBlock Text="INSERCIÓN CORRECTA" Foreground="White"/>
+                </StackPanel>
+            </Popup>
+
+            <Border Grid.Row="0" Grid.ColumnSpan="2" Background="#444">
+                <TextBlock x:Name="txtInfo" HorizontalAlignment="Center"
+                    Text="INSERTAR MODELO ARTÍCULO" Margin="20" FontWeight="Bold"
+                           FontSize="22" Foreground="White"/>
+            </Border>
+            <TextBlock Text="Los campos con * son obligatorios" VerticalAlignment="Top"
+                       Margin="10,5,0,0" FontSize="10" FontWeight="Bold"
+                       Grid.Row="1"/>
+
+            <TextBox x:Name="txtNombreModelo" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     mat:HintAssist.Hint="Nombre Modelo Articulo*" MaxLength="45" FontWeight="Bold"
+                     Margin="20, 25, 20, 0" Width="200" TextChanged="txtNombreModelo_TextChanged"
+                     Grid.Row="1" Grid.Column="0" Foreground="White"/>
+            <TextBox x:Name="txtModelo" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     mat:HintAssist.Hint="Modelo" MaxLength="255"
+                     Margin="20, 25, 20, 0" Width="200"
+                     Grid.Row="1" Grid.Column="1"/>
+            <TextBox x:Name="txtMarcaModelo" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     mat:HintAssist.Hint="Marca Modelo Articulo*" MaxLength="255" FontWeight="Bold"
+                     Margin="20, 20, 20, 0" Width="200" TextChanged="txtMarcaModelo_TextChanged"
+                     Grid.Row="2"/>
+            <ComboBox x:Name="cbTipoModelo" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                     mat:HintAssist.Hint="Tipo Modelo Articulo*" FontWeight="Bold"
+                     Margin="20, 20, 20, 0" Width="200" SelectionChanged="cbTipoModelo_SelectionChanged"
+                     Grid.Row="2" Grid.Column="1" DisplayMemberPath="nombre"/>
+            
+            <!-- Descripcion -->
+            <TextBox x:Name="txtDescripcionModelo" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     mat:HintAssist.Hint="Descripción Modelo Articulo"
+                     Margin="20, 20, 20, 0" TextWrapping="Wrap" MaxHeight="200"
+                     Grid.Row="3" Grid.ColumnSpan="2"/>
+
+            <mat:Snackbar HorizontalAlignment="Stretch" x:Name="snackTodoCorrecto"
+                          Grid.Row="4" IsActive="False" Margin="20, 0, 0, 20"
+                          Message="INSERCIÓN CORRECTA"
+                          />
+
+            <Button x:Name="btnCancelar" Style="{StaticResource MaterialDesignOutlinedButton}"
+                    HorizontalAlignment="Left" Content="Cancelar"
+                    Margin="20, 20, 0, 20" IsCancel="True"
+                    Grid.Row="4" Grid.Column="1"/>
+            <Button x:Name="btnGuardar" Click="btnGuardar_Click"
+                    HorizontalAlignment="Right" Content="Guardar"
+                    Margin="0, 20, 20, 20" IsDefault="True"
+                    Grid.Row="4" Grid.Column="1"/>
+
+
+        </Grid>
+    </DockPanel>
+</mah:MetroWindow>
