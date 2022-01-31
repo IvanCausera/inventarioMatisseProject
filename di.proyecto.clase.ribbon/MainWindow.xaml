@@ -130,11 +130,6 @@
                             <mat:PackIcon Kind="ViewListOutline" Height="30" Width="30" Foreground="DarkBlue"/>
                         </fluent:Button.LargeIcon>
                     </fluent:Button>
-                    <fluent:Button Header="Tipo Articulo" x:Name="rbtnTipoArticulo" Click="rbtnTipoArticulo_Click">
-                        <fluent:Button.LargeIcon>
-                            <mat:PackIcon Kind="FormatListBulleted" Height="30" Width="30" Foreground="#eda869"/>
-                        </fluent:Button.LargeIcon>
-                    </fluent:Button>
                 </fluent:RibbonGroupBox>
                 <!--Group Modelo Articulo-->
                 <fluent:RibbonGroupBox x:Name="Employee" Header="Modelo Artículo">
@@ -156,6 +151,22 @@
                     <fluent:Button Header="Listado" x:Name="rbtnListaModeloArticulo" Click="rbtnListaModeloArticulo_Click">
                         <fluent:Button.LargeIcon>
                             <mat:PackIcon Kind="FormatListBulleted" Height="30" Width="30" Foreground="#eda869"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+                <!-- Grupo tipo articulo-->
+                <fluent:RibbonGroupBox Header="T. Articulo">
+                    <fluent:Button Header="Listado" x:Name="rbtnTipoArticulo" Click="rbtnTipoArticulo_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="Tree" Height="30" Width="30" Foreground="#eda869"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+                <!-- Grupo Espacios-->
+                <fluent:RibbonGroupBox Header="Espacios">
+                    <fluent:Button Header="Listado" x:Name="rbtnEspacios" Click="rbtnEspacios_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="Tree" Height="30" Width="30" Foreground="#eda869"/>
                         </fluent:Button.LargeIcon>
                     </fluent:Button>
                 </fluent:RibbonGroupBox>

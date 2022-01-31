@@ -96,5 +96,11 @@ namespace di.proyecto.clase.ribbon {
             gridCentral.Children.Clear();
             gridCentral.Children.Add(uc);
         }
+
+        private void rbtnEspacios_Click(object sender, RoutedEventArgs e){
+            UCArbolEspacios uc = new UCArbolEspacios(invEnt);
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(uc);
+        }
     }
 }

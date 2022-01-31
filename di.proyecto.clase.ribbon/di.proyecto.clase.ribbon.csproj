@@ -123,6 +123,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Frontend\ControlesUsuario\UCArbolEspacios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Frontend\ControlesUsuario\UCArbolGrupo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -244,6 +248,9 @@
     <Compile Include="Backend\Servicios\UsuarioServicio.cs" />
     <Compile Include="Frontend\ControlesUsuario\UCArbolArticulo.xaml.cs">
       <DependentUpon>UCArbolArticulo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\ControlesUsuario\UCArbolEspacios.xaml.cs">
+      <DependentUpon>UCArbolEspacios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Frontend\ControlesUsuario\UCArbolGrupo.xaml.cs">
       <DependentUpon>UCArbolGrupo.xaml</DependentUpon>

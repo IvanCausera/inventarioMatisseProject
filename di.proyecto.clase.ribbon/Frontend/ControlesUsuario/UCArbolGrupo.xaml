@@ -34,16 +34,13 @@
                     <HierarchicalDataTemplate DataType="{x:Type ent:usuario}">
                         <StackPanel Orientation="Horizontal">
                             <mat:PackIcon Kind="PackageOpen" Margin="0,0,5,0"/>
-                            <TextBlock>
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0} - {1}({2})({3})">
-                                        <Binding Path="nombre"/>
-                                        <Binding Path="domicilio"/>
-                                        <Binding Path="telefono"/>
-                                        <Binding Path="salida.Count"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
+                            <TextBlock Text="{Binding Path=nombre}"/>
+                            <TextBlock Text=" - ("/>
+                            <TextBlock Text="{Binding Path=username}" FontWeight="Bold"/>
+                            <TextBlock Text=") "/>
+                            <TextBlock Text="("/>
+                            <TextBlock Text="{Binding Path=salida.Count}"/>
+                            <TextBlock Text=")"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </TreeView.Resources>
