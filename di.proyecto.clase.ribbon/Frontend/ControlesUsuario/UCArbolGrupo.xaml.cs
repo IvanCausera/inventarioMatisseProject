@@ -1,4 +1,6 @@
 ﻿using di.proyecto.clase.ribbon.Backend.Modelo;
+using di.proyecto.clase.ribbon.Frontend.Dialogos;
+using di.proyecto.clase.ribbon.MVVM;
 using di.proyecto.clase.ribbon.Servicios;
 using System;
 using System.Collections.Generic;
@@ -21,17 +23,30 @@ namespace di.proyecto.clase.ribbon.Frontend.ControlesUsuario {
     /// </summary>
     public partial class UCArbolGrupo : UserControl {
         private inventarioEntities invEnt;
-        private GrupoServicio grupServ;
+        //private GrupoServicio grupServ;
+        private MVUsuario mvUsu;
         public UCArbolGrupo(inventarioEntities ent) {
             InitializeComponent();
             invEnt = ent;
-            grupServ = new GrupoServicio(invEnt);
-            treeGrupo.ItemsSource = grupServ.getAll().ToList();
+            //grupServ = new GrupoServicio(invEnt);
+            mvUsu = new MVUsuario(invEnt);
+            DataContext = mvUsu;
+            //treeGrupo.ItemsSource = grupServ.getAll().ToList();
         }
 
         private void treeGrupo_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
             if (treeGrupo.SelectedItem is usuario) {
                 dgPrestamos.ItemsSource = ((usuario)treeGrupo.SelectedItem).salida;
+            }
+        }
+
+        private async void treeGrupo_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {
+            if (treeGrupo.SelectedItem != null && treeGrupo.SelectedItem is usuario) {
+                DialogoMVVMAddUsuario diag = new DialogoMVVMAddUsuario(invEnt, ((usuario)treeGrupo.SelectedItem));
+                diag.ShowDialog();
+            } else {
+                MessageBox.Show("CUIDADO!! mis comidas preferidas todas fallecidas", "MI BOCADILLO HA' PALMADO", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show("CUIDADO!! ","GESTIÓN USUARIOS", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

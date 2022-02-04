@@ -15,13 +15,14 @@
                        HorizontalAlignment="Center"/>
         </Grid>
         <Grid DockPanel.Dock="Left">
-            <TreeView x:Name="treeEspacio" SelectedItemChanged="treeEspacio_SelectedItemChanged">
+            <TreeView x:Name="treeEspacio" SelectedItemChanged="treeEspacio_SelectedItemChanged"
+                      ItemsSource="{Binding listaEspacios}">
                 <TreeView.Resources>
                     <!-- Espacios -->
                     <HierarchicalDataTemplate DataType="{x:Type ent:espacio}"
-                                              ItemsSource="{Binding Path=articulo}">
+                                              ItemsSource="{Binding articulo}">
                         <StackPanel Orientation="Horizontal">
-                            <mat:PackIcon Kind="PackageOpen" Margin="0,0,5,0"/>
+                            <mat:PackIcon Kind="Roomba" Margin="0,0,5,0"/>
                             <TextBlock>
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0} - ({1})">
@@ -34,7 +35,7 @@
                     </HierarchicalDataTemplate>
                     <!-- Articulos -->
                     <HierarchicalDataTemplate DataType="{x:Type ent:articulo}"
-                                              ItemsSource="{Binding Path=salida}">
+                                              ItemsSource="{Binding salida}">
                         <StackPanel Orientation="Horizontal">
                             <mat:PackIcon Kind="PackageOpen" Margin="0,0,5,0"/>
                             <TextBlock>
@@ -50,12 +51,12 @@
                     <!-- Salidas|Prestamos -->
                     <HierarchicalDataTemplate DataType="{x:Type ent:salida}">
                         <StackPanel Orientation="Horizontal">
-                            <mat:PackIcon Kind="PackageOpen" Margin="0,0,5,0"/>
+                            <mat:PackIcon Kind="Bank" Margin="0,0,5,0"/>
                             <TextBlock>
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0} - ({1})">
                                         <Binding Path="usuario1.nombre"/>
-                                        <Binding Path="fechadevolucion"/>
+                                        <Binding Path="fechasalida"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
@@ -64,14 +65,93 @@
                 </TreeView.Resources>
             </TreeView>
         </Grid>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Datos de usuario" Margin="20" 
+                       Grid.ColumnSpan="2"/>
+            <Separator Margin="10,10,10,20" VerticalAlignment="Bottom"
+                       Grid.ColumnSpan="6" />
+            <!--Nombre-->
+            <TextBlock Text="Nombre" Margin="20,10,10,20"
+                       VerticalAlignment="Center"
+                       Grid.Row="1"/>
+            <TextBox x:Name="tboxNombre" Margin="20,10,0,20"
+                     Text="{Binding salidaSeleccionada.usuario1.nombre}"
+                     VerticalAlignment="Center" Width="200"
+                     Grid.Row="1" Grid.Column="1"/>
+            <!--Apellido-->
+            <TextBlock Text="Primer Apellido" Margin="20,10,0,20"
+                       VerticalAlignment="Center"
+                       Grid.Row="1" Grid.Column="2"/>
+            <TextBox x:Name="tboxApellido1" 
+                     HorizontalAlignment="Left" Margin="10,0,0,20"
+                     Text="{Binding salidaSeleccionada.usuario1.apellido1}"
+                     VerticalAlignment="Center" Width="200"
+                     Grid.Row="1" Grid.Column="3"/>
+            <!--Email-->
+            <TextBlock Text="Email" Margin="20,10,0,20"
+                       VerticalAlignment="Center"
+                       Grid.Row="1" Grid.Column="4"/>
+            <TextBox x:Name="tboxEmail" 
+                     HorizontalAlignment="Left" Margin="10,0,0,20"
+                     Text="{Binding salidaSeleccionada.usuario1.email}"
+                     VerticalAlignment="Center" Width="200"
+                     Grid.Row="1" Grid.Column="5"/>
+
+            <!--Nombre-->
+            <TextBlock Text="Nombre usuario" Margin="20,10,10,20"
+                       VerticalAlignment="Center"
+                       Grid.Row="2"/>
+            <TextBox x:Name="tboxUsername" Margin="20,10,0,20"
+                     Text="{Binding salidaSeleccionada.usuario1.username}"
+                     VerticalAlignment="Center" Width="200"
+                     Grid.Row="2" Grid.Column="1"/>
+            <!--Apellido-->
+            <TextBlock Text="Tipo Usuario" Margin="20,10,0,20"
+                       VerticalAlignment="Center"
+                       Grid.Row="2" Grid.Column="2"/>
+            <ComboBox x:Name="comboTipousuario" 
+                     HorizontalAlignment="Left" Margin="10,0,0,20"
+                     SelectedItem="{Binding salidaSeleccionada.usuario1.tipousuario}"
+                      DisplayMemberPath="nombre"
+                      ItemsSource="{Binding listaTiposUsuario}"
+                      mat:HintAssist.Hint="Selecciona un tipo de usuario"
+                     VerticalAlignment="Center" Width="200"
+                     Grid.Row="2" Grid.Column="3"/>
+            <!--Email-->
+            <TextBlock Text="Grupo" Margin="20,10,0,20"
+                       VerticalAlignment="Center"
+                       Grid.Row="2" Grid.Column="4"/>
+            <TextBox x:Name="tboxGrupo" 
+                     HorizontalAlignment="Left" Margin="10,0,0,20"
+                     Text="{Binding salidaSeleccionada.usuario1.grupo1.nombre}"
+                     VerticalAlignment="Center" Width="200"
+                     Grid.Row="2" Grid.Column="5"/>
+
+        </Grid>
         <Grid>
-            <DataGrid x:Name="dgPrestamos" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*">
+            <DataGrid x:Name="dgPrestamos" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*"
+                      IsReadOnly="True"
+                      SelectedItem="{Binding salidaSeleccionada}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="NOMBRE" Binding="{Binding usuario1.nombre}"/>
                     <DataGridTextColumn Header="APELLIDO" Binding="{Binding usuario1.apellido1}"/>
                     <DataGridTextColumn Header="USUARIO" Binding="{Binding usuario1.username}"/>
+                    <DataGridTextColumn Header="DEPARTAMENTO" Binding="{Binding usuario1.departamento1.nombre}"/>
                     <DataGridTextColumn Header="TIPO USUARIO" Binding="{Binding usuario1.tipousuario.nombre}"/>
-                    <DataGridTextColumn Header="ROL USUARIO" Binding="{Binding usuario1.rol1.nombre}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

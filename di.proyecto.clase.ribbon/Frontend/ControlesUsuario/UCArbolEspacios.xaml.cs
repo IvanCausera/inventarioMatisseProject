@@ -1,4 +1,5 @@
 ﻿using di.proyecto.clase.ribbon.Backend.Modelo;
+using di.proyecto.clase.ribbon.MVVM;
 using di.proyecto.clase.ribbon.Servicios;
 using System;
 using System.Collections.Generic;
@@ -23,18 +24,21 @@ namespace di.proyecto.clase.ribbon.Frontend.ControlesUsuario
     public partial class UCArbolEspacios : UserControl{
 
         private inventarioEntities invEnt;
-        private EspacioServicio espServ;
+        //private EspacioServicio espServ;
+        private MVArticulo mvArti;
 
         public UCArbolEspacios(inventarioEntities ent){
             InitializeComponent();
             invEnt = ent;
-            espServ = new EspacioServicio(invEnt);
-            treeEspacio.ItemsSource = espServ.getAll().ToList();
+            //espServ = new EspacioServicio(invEnt);
+            mvArti = new MVArticulo(invEnt);
+            DataContext = mvArti;
+            //treeEspacio.ItemsSource = espServ.getAll().ToList();
         }
 
         private void treeEspacio_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e){
-            if (treeEspacio.SelectedItem is articulo) {
-                dgPrestamos.ItemsSource = ((articulo)treeEspacio.SelectedItem).salida;
+            if (treeEspacio.SelectedItem is salida) {
+                dgPrestamos.ItemsSource = ((salida)treeEspacio.SelectedItem).articulo1.salida;
             }
         }
     }

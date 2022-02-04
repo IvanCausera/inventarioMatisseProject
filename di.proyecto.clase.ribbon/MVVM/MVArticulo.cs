@@ -17,7 +17,8 @@ namespace di.proyecto.clase.ribbon.MVVM {
         private ListCollectionView lista;
         private DateTime fechaIni;
         private DateTime fechaFin;
-
+        private salida salidaSel;
+        private ServicioGenerico<tipousuario> tipousuarioServicio;
 
         public MVArticulo(inventarioEntities ent, usuario user) {
             this.invEnt = ent;
@@ -27,7 +28,24 @@ namespace di.proyecto.clase.ribbon.MVVM {
             art.idarticulo = articuloServicio.getLastId() + 1;
             art.usuario = user;
             lista = new ListCollectionView(articuloServicio.getAll().ToList());
+            inicializa();
         }
+
+        public MVArticulo(inventarioEntities ent) {
+            this.invEnt = ent;
+            articuloServicio = new ArticuloServicio(invEnt);
+            servicio = articuloServicio;
+            art = new articulo();
+            art.idarticulo = articuloServicio.getLastId() + 1;
+            lista = new ListCollectionView(articuloServicio.getAll().ToList());
+            inicializa();
+        }
+
+        private void inicializa() {
+            salidaSel = new salida();
+            tipousuarioServicio = new ServicioGenerico<tipousuario>(invEnt);
+        }
+
         /// <summary>
         /// Guarda la inicial final seleccionada en la interfaz
         /// </summary>
@@ -66,6 +84,15 @@ namespace di.proyecto.clase.ribbon.MVVM {
 
         public List<departamento> listaDepartamentos {
             get { return new DptoServicio(invEnt).getAll().ToList(); }
+        }
+
+        public salida salidaSeleccionada {
+            get { return salidaSel; }
+            set { salidaSel = value; NotifyPropertyChanged(nameof(salidaSeleccionada)); }
+        }
+
+        public List<tipousuario> listaTiposUsuario {
+            get { return tipousuarioServicio.getAll().ToList(); }
         }
 
         public bool guarda {

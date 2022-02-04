@@ -10,15 +10,146 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
         <Grid DockPanel.Dock="Top">
-            <TextBlock Text="ARBOL GRUPOS" FontSize="20"
+            <TextBlock Text="GESTIÓN DE USUARIOS" FontSize="20"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"/>
         </Grid>
-        <Grid DockPanel.Dock="Left">
-            <TreeView x:Name="treeGrupo" SelectedItemChanged="treeGrupo_SelectedItemChanged">
-                <TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type ent:grupo}"
-                                              ItemsSource="{Binding Path=usuario}">
+        <Grid DockPanel.Dock="Left" Width="300">
+            <TreeView x:Name="treeGrupo" SelectedItemChanged="treeGrupo_SelectedItemChanged"
+                      MouseRightButtonDown="treeGrupo_MouseRightButtonDown">
+                <!-- Grupos -->
+                <TreeViewItem x:Name="treeVIGrupos" Header="Grupos"
+                              ItemsSource="{Binding listaGrupos}">
+                    <TreeViewItem.Resources>
+                        <!--grupo-->
+                        <HierarchicalDataTemplate DataType="{x:Type ent:grupo}"
+                                                  ItemsSource="{Binding usuario}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding nombre}"/>
+                                <TextBlock Text=" - ("/>
+                                <TextBlock Text="{Binding usuario.Count}" FontWeight="Bold"/>
+                                <TextBlock Text=") "/>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+
+                        <!--usuario-->
+                        <HierarchicalDataTemplate DataType="{x:Type ent:usuario}">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} {1} - ({2})">
+                                            <Binding Path="nombre"/>
+                                            <Binding Path="apellido1"/>
+                                            <Binding Path="username"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} ({1})">
+                                            <Binding Path="tipousuario.nombre"/>
+                                            <Binding Path="rol1.nombre"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                            <!--
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding nombre}"/>
+                                    <TextBlock Text=" "/>
+                                    <TextBlock Text="{Binding apellido1}"/>
+                                    <TextBlock Text=" - ("/>
+                                    <TextBlock Text="{Binding username}" FontWeight="Bold"/>
+                                    <TextBlock Text=") "/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Grid.Row="1">
+                                    <TextBlock Text="{Binding tipousuario.nombre}"/>
+                                    <TextBlock Text=" - ("/>
+                                    <TextBlock Text="{Binding rol1.nombre}"/>
+                                    <TextBlock Text=") "/>
+                                </StackPanel>
+                            </Grid>
+                            -->
+                        </HierarchicalDataTemplate>
+
+                        <!--grupo
+                        <HierarchicalDataTemplate DataType="{x:Type ent:grupo}"
+                                              ItemsSource="{Binding listaGrupos}">
+                            <StackPanel Orientation="Horizontal">
+                                <mat:PackIcon Kind="Package" Margin="0,0,5,0"/>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} - ({1})">
+                                            <Binding Path="nombre"/>
+                                            <Binding Path="usuario.Count"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>-->
+                        <!--usuario
+                        <HierarchicalDataTemplate DataType="{x:Type ent:usuario}">
+                            <StackPanel Orientation="Horizontal">
+                                <mat:PackIcon Kind="PackageOpen" Margin="0,0,5,0"/>
+                                <TextBlock Text="{Binding Path=nombre}"/>
+                                <TextBlock Text=" - ("/>
+                                <TextBlock Text="{Binding Path=username}" FontWeight="Bold"/>
+                                <TextBlock Text=") "/>
+                                <TextBlock Text="("/>
+                                <TextBlock Text="{Binding Path=salida.Count}"/>
+                                <TextBlock Text=")"/>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>-->
+                    </TreeViewItem.Resources>
+                </TreeViewItem>
+                
+                <!-- Departamentos -->
+                <TreeViewItem x:Name="treeVIDepartamentos" Header="Departamentos"
+                              ItemsSource="{Binding listaDepartamentos}">
+                    <TreeViewItem.Resources>
+                        <!--departamento-->
+                        <HierarchicalDataTemplate DataType="{x:Type ent:departamento}"
+                                                  ItemsSource="{Binding usuario}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding nombre}"/>
+                                <TextBlock Text=" - ("/>
+                                <TextBlock Text="{Binding usuario.Count}" FontWeight="Bold"/>
+                                <TextBlock Text=") "/>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        
+                        <!--usuario-->
+                        <HierarchicalDataTemplate DataType="{x:Type ent:usuario}">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} {1} - ({2})">
+                                            <Binding Path="nombre"/>
+                                            <Binding Path="apellido1"/>
+                                            <Binding Path="username"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} ({1})">
+                                            <Binding Path="tipousuario.nombre"/>
+                                            <Binding Path="rol1.nombre"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                    
+                    <!--departamento
+                    <HierarchicalDataTemplate DataType="{x:Type ent:departamento}"
+                                              ItemsSource="{Binding listaDepartamentos}">
                         <StackPanel Orientation="Horizontal">
                             <mat:PackIcon Kind="Package" Margin="0,0,5,0"/>
                             <TextBlock>
@@ -30,24 +161,14 @@
                                 </TextBlock.Text>
                             </TextBlock>
                         </StackPanel>
-                    </HierarchicalDataTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type ent:usuario}">
-                        <StackPanel Orientation="Horizontal">
-                            <mat:PackIcon Kind="PackageOpen" Margin="0,0,5,0"/>
-                            <TextBlock Text="{Binding Path=nombre}"/>
-                            <TextBlock Text=" - ("/>
-                            <TextBlock Text="{Binding Path=username}" FontWeight="Bold"/>
-                            <TextBlock Text=") "/>
-                            <TextBlock Text="("/>
-                            <TextBlock Text="{Binding Path=salida.Count}"/>
-                            <TextBlock Text=")"/>
-                        </StackPanel>
-                    </HierarchicalDataTemplate>
-                </TreeView.Resources>
+                    </HierarchicalDataTemplate>-->
+                    </TreeViewItem.Resources>
+                </TreeViewItem>
             </TreeView>
         </Grid>
         <Grid>
-            <DataGrid x:Name="dgPrestamos" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*">
+            <DataGrid x:Name="dgPrestamos" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*"
+                      IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="USUARIO" Binding="{Binding usuario1}"/>
                     <DataGridTextColumn Header="NUMERO DE SERIE" Binding="{Binding articulo1.numserie}"/>
