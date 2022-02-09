@@ -102,5 +102,11 @@ namespace di.proyecto.clase.ribbon {
             gridCentral.Children.Clear();
             gridCentral.Children.Add(uc);
         }
+
+        private void rbtnInformes_Click(object sender, RoutedEventArgs e) {
+            UCReportViewer uc = new UCReportViewer();
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(uc);
+        }
     }
 }

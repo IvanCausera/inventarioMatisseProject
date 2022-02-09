@@ -258,7 +258,7 @@
             <fluent:RibbonTabItem Header="INFORMACIÓN">
                 <!--Group Informes-->
                 <fluent:RibbonGroupBox Header="Informes" >
-                    <fluent:Button Header="Informes">
+                    <fluent:Button Header="Informes" x:Name="rbtnInformes" Click="rbtnInformes_Click">
                         <fluent:Button.LargeIcon>
                             <mat:PackIcon Kind="FormatListBulleted" Height="30" Width="30" Foreground="#83cf94"/>
                         </fluent:Button.LargeIcon>
