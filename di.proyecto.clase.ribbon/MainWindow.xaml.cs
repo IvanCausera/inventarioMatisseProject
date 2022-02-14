@@ -108,5 +108,11 @@ namespace di.proyecto.clase.ribbon {
             gridCentral.Children.Clear();
             gridCentral.Children.Add(uc);
         }
+
+        private void rbtnCrystal_Click(object sender, RoutedEventArgs e) {
+            UCInformeSalidas uc = new UCInformeSalidas();
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(uc);
+        }
     }
 }

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSSalida" targetNamespace="http://tempuri.org/DSSalida.xsd" xmlns:mstns="http://tempuri.org/DSSalida.xsd" xmlns="http://tempuri.org/DSSalida.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="diinventarioexamenConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="diinventarioexamenConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.di.proyecto.clase.ribbon.Properties.Settings.GlobalReference.Default.diinventarioexamenConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SalidaDataTableTableAdapter" GeneratorDataComponentClassName="SalidaDataTableTableAdapter" Name="SalidaDataTable" UserDataComponentName="SalidaDataTableTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="diinventarioexamenConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT m.nombre as modeloarticulo, a.numserie, u.nombre, u.apellido1, s.fechasalida, s.fechadevolucion FROM salida s 
+inner join articulo a on s.articulo=a.idarticulo 
+inner join modeloarticulo m on a.modelo=m.idmodeloarticulo 
+inner join usuario u on s.usuario=u.idusuario</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="modeloarticulo" DataSetColumn="modeloarticulo" />
+              <Mapping SourceColumn="numserie" DataSetColumn="numserie" />
+              <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+              <Mapping SourceColumn="apellido1" DataSetColumn="apellido1" />
+              <Mapping SourceColumn="fechasalida" DataSetColumn="fechasalida" />
+              <Mapping SourceColumn="fechadevolucion" DataSetColumn="fechadevolucion" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSSalida" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSSalida" msprop:Generator_UserDSName="DSSalida">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SalidaDataTable" msprop:Generator_TableClassName="SalidaDataTableDataTable" msprop:Generator_TableVarName="tableSalidaDataTable" msprop:Generator_TablePropName="SalidaDataTable" msprop:Generator_RowDeletingName="SalidaDataTableRowDeleting" msprop:Generator_RowChangingName="SalidaDataTableRowChanging" msprop:Generator_RowEvHandlerName="SalidaDataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="SalidaDataTableRowDeleted" msprop:Generator_UserTableName="SalidaDataTable" msprop:Generator_RowChangedName="SalidaDataTableRowChanged" msprop:Generator_RowEvArgName="SalidaDataTableRowChangeEvent" msprop:Generator_RowClassName="SalidaDataTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="modeloarticulo" msprop:Generator_ColumnVarNameInTable="columnmodeloarticulo" msprop:Generator_ColumnPropNameInRow="modeloarticulo" msprop:Generator_ColumnPropNameInTable="modeloarticuloColumn" msprop:Generator_UserColumnName="modeloarticulo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="numserie" msprop:Generator_ColumnVarNameInTable="columnnumserie" msprop:Generator_ColumnPropNameInRow="numserie" msprop:Generator_ColumnPropNameInTable="numserieColumn" msprop:Generator_UserColumnName="numserie" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="apellido1" msprop:Generator_ColumnVarNameInTable="columnapellido1" msprop:Generator_ColumnPropNameInRow="apellido1" msprop:Generator_ColumnPropNameInTable="apellido1Column" msprop:Generator_UserColumnName="apellido1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fechasalida" msprop:Generator_ColumnVarNameInTable="columnfechasalida" msprop:Generator_ColumnPropNameInRow="fechasalida" msprop:Generator_ColumnPropNameInTable="fechasalidaColumn" msprop:Generator_UserColumnName="fechasalida" type="xs:dateTime" />
+              <xs:element name="fechadevolucion" msprop:Generator_ColumnVarNameInTable="columnfechadevolucion" msprop:Generator_ColumnPropNameInRow="fechadevolucion" msprop:Generator_ColumnPropNameInTable="fechadevolucionColumn" msprop:Generator_UserColumnName="fechadevolucion" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
