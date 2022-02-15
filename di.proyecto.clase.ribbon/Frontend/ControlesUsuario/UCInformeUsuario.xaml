@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="di.proyecto.clase.ribbon.Frontend.ControlesUsuario.UCInformeSalidas"
+﻿<UserControl x:Class="di.proyecto.clase.ribbon.Frontend.ControlesUsuario.UCInformeUsuario"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,7 @@
              xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:di.proyecto.clase.ribbon.Frontend.ControlesUsuario"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <DockPanel>
         <Grid DockPanel.Dock="Top">
             <Grid.RowDefinitions>
@@ -18,13 +18,14 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock FontSize="20" Margin="20" FontWeight="Bold" Foreground="White"
-                       Text="INFORMES SOBRE SALIDAS" HorizontalAlignment="Center"
-                       Grid.ColumnSpan="4"/>
-            <!--
+                       Text="INFORMES SOBRE USUARIOS" HorizontalAlignment="Center"
+                       Grid.ColumnSpan="5"/>
             <TextBlock Text="Elige un departamento"
                        Margin="10"
                        Grid.Row="1"/>
@@ -34,14 +35,17 @@
                       DisplayMemberPath="nombre" ItemsSource="{Binding listaDepartamentos}"
                       SelectedItem="{Binding dptoSeleccionado}"
                       Grid.Row="1" Grid.Column="1"/>
-            -->
+            <TextBlock Text="Introduce un nombre" VerticalAlignment="Center"
+                       Grid.Row="1" Grid.Column="2" Margin="10"/>
+            <TextBox Width="200" Margin="0,10,10,10" x:Name="txtNombre"
+                     Text="{Binding textoNombre, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="1" Grid.Column="3"/>
             <Button Content="Informe" x:Name="btnGenerarInforme" Click="btnGenerarInforme_Click"
-                    Grid.Row="1" Grid.Column="2"/>
-            
+                    Grid.Row="1" Grid.Column="4"/>
         </Grid>
 
         <Grid>
-            <sap:CrystalReportsViewer x:Name="crvInfomeSalidas"/>
+            <sap:CrystalReportsViewer x:Name="crvInfomeUsuarios"/>
         </Grid>
     </DockPanel>
 </UserControl>

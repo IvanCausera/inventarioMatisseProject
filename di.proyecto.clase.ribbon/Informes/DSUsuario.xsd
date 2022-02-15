@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSUsuario" targetNamespace="http://tempuri.org/DSUsuario.xsd" xmlns:mstns="http://tempuri.org/DSUsuario.xsd" xmlns="http://tempuri.org/DSUsuario.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="diinventarioexamenConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="diinventarioexamenConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.di.proyecto.clase.ribbon.Properties.Settings.GlobalReference.Default.diinventarioexamenConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UsuarioDataTableTableAdapter" GeneratorDataComponentClassName="UsuarioDataTableTableAdapter" Name="UsuarioDataTable" UserDataComponentName="UsuarioDataTableTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="diinventarioexamenConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select u.nombre, u.apellido1, u.username, u.grupo, d.nombre as nombredpto, t.nombre as tipousuario, r.nombre as rolusuario
+from usuario u left join departamento d on u.departamento = d.iddepartamento
+inner join tipousuario t on u.tipo = t.idtipousuario
+inner join rol r on u.rol = r.idrol</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+              <Mapping SourceColumn="apellido1" DataSetColumn="apellido1" />
+              <Mapping SourceColumn="username" DataSetColumn="username" />
+              <Mapping SourceColumn="grupo" DataSetColumn="grupo" />
+              <Mapping SourceColumn="nombredpto" DataSetColumn="nombredpto" />
+              <Mapping SourceColumn="tipousuario" DataSetColumn="tipousuario" />
+              <Mapping SourceColumn="rolusuario" DataSetColumn="rolusuario" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSUsuario" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSUsuario" msprop:Generator_UserDSName="DSUsuario">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="UsuarioDataTable" msprop:Generator_TableClassName="UsuarioDataTableDataTable" msprop:Generator_TableVarName="tableUsuarioDataTable" msprop:Generator_TablePropName="UsuarioDataTable" msprop:Generator_RowDeletingName="UsuarioDataTableRowDeleting" msprop:Generator_RowChangingName="UsuarioDataTableRowChanging" msprop:Generator_RowEvHandlerName="UsuarioDataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="UsuarioDataTableRowDeleted" msprop:Generator_UserTableName="UsuarioDataTable" msprop:Generator_RowChangedName="UsuarioDataTableRowChanged" msprop:Generator_RowEvArgName="UsuarioDataTableRowChangeEvent" msprop:Generator_RowClassName="UsuarioDataTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="apellido1" msprop:Generator_ColumnVarNameInTable="columnapellido1" msprop:Generator_ColumnPropNameInRow="apellido1" msprop:Generator_ColumnPropNameInTable="apellido1Column" msprop:Generator_UserColumnName="apellido1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="username" msprop:Generator_ColumnVarNameInTable="columnusername" msprop:Generator_ColumnPropNameInRow="username" msprop:Generator_ColumnPropNameInTable="usernameColumn" msprop:Generator_UserColumnName="username">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="grupo" msprop:Generator_ColumnVarNameInTable="columngrupo" msprop:Generator_ColumnPropNameInRow="grupo" msprop:Generator_ColumnPropNameInTable="grupoColumn" msprop:Generator_UserColumnName="grupo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombredpto" msprop:Generator_ColumnVarNameInTable="columnnombredpto" msprop:Generator_ColumnPropNameInRow="nombredpto" msprop:Generator_ColumnPropNameInTable="nombredptoColumn" msprop:Generator_UserColumnName="nombredpto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tipousuario" msprop:Generator_ColumnVarNameInTable="columntipousuario" msprop:Generator_ColumnPropNameInRow="tipousuario" msprop:Generator_ColumnPropNameInTable="tipousuarioColumn" msprop:Generator_UserColumnName="tipousuario" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="rolusuario" msprop:Generator_ColumnVarNameInTable="columnrolusuario" msprop:Generator_ColumnPropNameInRow="rolusuario" msprop:Generator_ColumnPropNameInTable="rolusuarioColumn" msprop:Generator_UserColumnName="rolusuario">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

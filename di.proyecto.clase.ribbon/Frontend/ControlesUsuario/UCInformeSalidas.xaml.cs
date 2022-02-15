@@ -1,5 +1,7 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
+using di.proyecto.clase.ribbon.Backend.Modelo;
 using di.proyecto.clase.ribbon.Backend.Servicios;
+using di.proyecto.clase.ribbon.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +22,14 @@ namespace di.proyecto.clase.ribbon.Frontend.ControlesUsuario {
     /// Interaction logic for UCInformeSalidas.xaml
     /// </summary>
     public partial class UCInformeSalidas : UserControl {
-        public UCInformeSalidas() {
+
+        private inventarioEntities invEnt;
+        private MVUsuario mvUsu;
+        public UCInformeSalidas(inventarioEntities ent) {
             InitializeComponent();
-            CargarInforme();
+            invEnt = ent;
+            mvUsu = new MVUsuario(invEnt);
+            DataContext = mvUsu;
         }
 
         public void CargarInforme() {
@@ -47,6 +54,10 @@ namespace di.proyecto.clase.ribbon.Frontend.ControlesUsuario {
                 System.Console.WriteLine(ex.StackTrace);
                 System.Console.WriteLine(ex.InnerException);
             }
+        }
+
+        private void btnGenerarInforme_Click(object sender, RoutedEventArgs e) {
+            CargarInforme();
         }
     }
 }

@@ -61,5 +61,38 @@ namespace di.proyecto.clase.ribbon.Backend.Servicios {
             // Devolvemos el DataAdapter
             return ds.Tables[0];
         }
+
+        public DataTable getDatos(string query, MySqlParameter param) {
+            // Creamos un DataSet
+            DataSet ds = new DataSet();
+            // Obtenemos los datos en función de la conexión y de la sentencia SELECT
+            MySqlDataAdapter adapt = new MySqlDataAdapter(query, con);
+            // Añadimos el parámetro a la consulta
+            if (param != null) {
+                adapt.SelectCommand.Parameters.Add(param);
+            }
+            // Guardamos los datos en el DataAdapter (Equivalente a ResulSet)
+            adapt.Fill(ds);
+            // Devolvemos el DataAdapter
+            return ds.Tables[0];
+        }
+
+        public DataTable getDatos(string query, List<MySqlParameter> param) {
+            // Creamos un DataSet
+            DataSet ds = new DataSet();
+            // Obtenemos los datos en función de la conexión y de la sentencia SELECT
+            MySqlDataAdapter adapt = new MySqlDataAdapter(query, con);
+            // Añadimos el parámetro a la consulta
+            if (param != null) {
+                foreach (MySqlParameter p in param) {
+                    adapt.SelectCommand.Parameters.Add(p);
+                }
+            }
+           
+            // Guardamos los datos en el DataAdapter (Equivalente a ResulSet)
+            adapt.Fill(ds);
+            // Devolvemos el DataAdapter
+            return ds.Tables[0];
+        }
     }
 }

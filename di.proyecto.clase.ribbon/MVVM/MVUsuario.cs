@@ -20,6 +20,8 @@ namespace di.proyecto.clase.ribbon.MVVM {
         private List<Predicate<usuario>> criterios;
         private Predicate<usuario> criterioRol;
         private Predicate<usuario> criterioNombre;
+        private departamento departamento;
+        private string txtNombre;
 
         public MVUsuario(inventarioEntities invEnt) {
             this.invEnt = invEnt;
@@ -38,6 +40,16 @@ namespace di.proyecto.clase.ribbon.MVVM {
         public usuario usuarioNuevo {
             get { return usu; }
             set { usu = value; NotifyPropertyChanged(nameof(usuarioNuevo)); }
+        }
+
+        public departamento dptoSeleccionado {
+            get { return departamento; }
+            set { departamento = value; NotifyPropertyChanged(nameof(dptoSeleccionado)); }
+        }
+
+        public string textoNombre {
+            get { return txtNombre; }
+            set { txtNombre = value; NotifyPropertyChanged(nameof(textoNombre)); }
         }
 
         public ListCollectionView listaUsuarios {
