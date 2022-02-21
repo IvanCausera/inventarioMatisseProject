@@ -7,7 +7,7 @@
              xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:di.proyecto.clase.ribbon.Frontend.ControlesUsuario"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="950">
     <DockPanel>
         <Grid DockPanel.Dock="Top">
             <Grid.RowDefinitions>
@@ -20,12 +20,14 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock FontSize="20" Margin="20" FontWeight="Bold" Foreground="White"
                        Text="INFORMES SOBRE USUARIOS" HorizontalAlignment="Center"
                        Grid.ColumnSpan="5"/>
+            <!--Departamento-->
             <TextBlock Text="Elige un departamento"
                        Margin="10"
                        Grid.Row="1"/>
@@ -35,13 +37,20 @@
                       DisplayMemberPath="nombre" ItemsSource="{Binding listaDepartamentos}"
                       SelectedItem="{Binding dptoSeleccionado}"
                       Grid.Row="1" Grid.Column="1"/>
+            <!--Nombre-->
             <TextBlock Text="Introduce un nombre" VerticalAlignment="Center"
                        Grid.Row="1" Grid.Column="2" Margin="10"/>
             <TextBox Width="200" Margin="0,10,10,10" x:Name="txtNombre"
                      Text="{Binding textoNombre, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="1" Grid.Column="3"/>
+            
             <Button Content="Informe" x:Name="btnGenerarInforme" Click="btnGenerarInforme_Click"
+                    Margin="10"
                     Grid.Row="1" Grid.Column="4"/>
+            
+            <Button Content="Borrar Filtros" x:Name="btnBorrarFiltros" Click="btnBorrarFiltros_Click"
+                    Margin="10"
+                    Grid.Row="1" Grid.Column="5"/>
         </Grid>
 
         <Grid>

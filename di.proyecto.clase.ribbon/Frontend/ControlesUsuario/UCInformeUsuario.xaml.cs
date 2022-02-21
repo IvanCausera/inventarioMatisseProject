@@ -96,5 +96,10 @@ namespace di.proyecto.clase.ribbon.Frontend.ControlesUsuario {
         private void btnGenerarInforme_Click(object sender, RoutedEventArgs e) {
             CargarInforme();
         }
+
+        private void btnBorrarFiltros_Click(object sender, RoutedEventArgs e) {
+            mvUsu.dptoSeleccionado = null;
+            mvUsu.textoNombre = null;
+        }
     }
 }

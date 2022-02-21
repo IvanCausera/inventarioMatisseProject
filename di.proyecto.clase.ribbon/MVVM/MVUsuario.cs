@@ -22,6 +22,7 @@ namespace di.proyecto.clase.ribbon.MVVM {
         private Predicate<usuario> criterioNombre;
         private departamento departamento;
         private string txtNombre;
+        private int mesSel = 0;
 
         public MVUsuario(inventarioEntities invEnt) {
             this.invEnt = invEnt;
@@ -47,6 +48,11 @@ namespace di.proyecto.clase.ribbon.MVVM {
             set { departamento = value; NotifyPropertyChanged(nameof(dptoSeleccionado)); }
         }
 
+        public int mesSeleccionado {
+            get { return mesSel; }
+            set { mesSel = value; NotifyPropertyChanged(nameof(mesSeleccionado)); }
+        }
+
         public string textoNombre {
             get { return txtNombre; }
             set { txtNombre = value; NotifyPropertyChanged(nameof(textoNombre)); }
@@ -70,6 +76,10 @@ namespace di.proyecto.clase.ribbon.MVVM {
 
         public List<tipousuario> listaTipoUsuarios {
             get { return new ServicioGenerico<tipousuario>(invEnt).getAll().ToList(); }
+        }
+
+        public List<int> listaMeses {
+            get { return new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }; }
         }
 
         public rol rolSeleccionado {
