@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace di.proyecto.clase.ribbon.MVVM {
     class MVModeloArticulo : MVBaseCRUD<modeloarticulo>{
-        // Definicion de variables ***********************
+        // Definicion de variables ***************************************************************************************
         private const int NUM_CORTE = 5;
 
         private inventarioEntities invEnt;
@@ -25,7 +25,7 @@ namespace di.proyecto.clase.ribbon.MVVM {
         private Predicate<modeloarticulo> criterioTipo;
         private Predicate<modeloarticulo> criterioNombre;
         private Predicate<modeloarticulo> criterioNumArt;
-        // Constructor ***********************************
+        // Constructor ***************************************************************************************
         public MVModeloArticulo(inventarioEntities ent) {
             invEnt = ent;
             inicializa();   
@@ -44,7 +44,7 @@ namespace di.proyecto.clase.ribbon.MVVM {
             criterioNumArt = new Predicate<modeloarticulo>(m => m.articulo.Count >= 5);
         }
 
-        //Getters and Setters ****************************
+        //Getters and Setters ***************************************************************************************
         public List<tipoarticulo> listaTipos { 
             get { return tipoServ.getAll().ToList(); }
         }
@@ -79,6 +79,7 @@ namespace di.proyecto.clase.ribbon.MVVM {
 
         public bool editar { get { return update(modeloNuevo); } }
 
+        // Metodos ***************************************************************************************
 
         public bool filtroTipo(object obj) {
             

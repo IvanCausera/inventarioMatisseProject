@@ -120,5 +120,11 @@ namespace di.proyecto.clase.ribbon {
             gridCentral.Children.Clear();
             gridCentral.Children.Add(uc);
         }
+
+        private void rbtnListaUsuarioExamen_Click(object sender, RoutedEventArgs e) {
+            UCUsuarioExamen uc = new UCUsuarioExamen(invEnt);
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(uc);
+        }
     }
 }

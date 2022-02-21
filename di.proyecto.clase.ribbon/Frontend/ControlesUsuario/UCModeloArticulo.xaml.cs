@@ -22,11 +22,14 @@ namespace di.proyecto.clase.ribbon.Frontend.ControlesUsuario {
     /// Interaction logic for UCModeloArticulo.xaml
     /// </summary>
     public partial class UCModeloArticulo : UserControl {
+        //Variables privadas *********************************************************************************************
         private inventarioEntities invEnt;
         //private ModeloArticuloServicio modServ;
         private MVModeloArticulo mvModelo;
         private PropertyGroupDescription groupMarca;
         private Predicate<object> prepModeloArticulo;
+
+        //Constructor *********************************************************************************************
         public UCModeloArticulo(inventarioEntities ent) {
             InitializeComponent();
             invEnt = ent;

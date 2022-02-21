@@ -223,6 +223,9 @@
     <Compile Include="Frontend\ControlesUsuario\UCInformeUsuario.xaml.cs">
       <DependentUpon>UCInformeUsuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\ControlesUsuario\UCUsuarioExamen.xaml.cs">
+      <DependentUpon>UCUsuarioExamen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Informes\CPUsuario.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -276,6 +279,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Frontend\ControlesUsuario\UCUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frontend\ControlesUsuario\UCUsuarioExamen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

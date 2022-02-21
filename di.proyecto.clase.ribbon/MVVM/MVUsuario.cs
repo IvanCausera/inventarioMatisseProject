@@ -9,21 +9,25 @@ using System.Windows.Data;
 
 namespace di.proyecto.clase.ribbon.MVVM {
     class MVUsuario : MVBaseCRUD<usuario>{
-        // Definicion de variables ***********************
+        // Definicion de variables *************************************
         private inventarioEntities invEnt;
         private usuario usu;
         private UsuarioServicio usuServ;
         private ListCollectionView list;
         private rol rolSelec;
-        private string textFiltro;
-
-        private List<Predicate<usuario>> criterios;
-        private Predicate<usuario> criterioRol;
-        private Predicate<usuario> criterioNombre;
         private departamento departamento;
+        private grupo grupo;
+        private string textFiltro;
         private string txtNombre;
         private int mesSel = 0;
 
+        // Definicion criterios filtro *************************************
+        private List<Predicate<usuario>> criterios;
+        private Predicate<usuario> criterioRol;
+        private Predicate<usuario> criterioNombre;
+        private Predicate<usuario> criterioGrupo;
+
+        // Constructor *************************************
         public MVUsuario(inventarioEntities invEnt) {
             this.invEnt = invEnt;
 
@@ -36,8 +40,10 @@ namespace di.proyecto.clase.ribbon.MVVM {
             criterioNombre = new Predicate<usuario>(usu => (!string.IsNullOrEmpty(usu.nombre) && usu.nombre.ToUpper().StartsWith(textNombreApellido.ToUpper()))
                 ||
                 (!string.IsNullOrEmpty(usu.apellido1) && usu.apellido1.ToUpper().StartsWith(textNombreApellido.ToUpper())));
+            criterioGrupo = new Predicate<usuario>(usu => usu.grupo1 == grupoSeleccionado);
         }
 
+        // Definicion de variables publicas *************************************
         public usuario usuarioNuevo {
             get { return usu; }
             set { usu = value; NotifyPropertyChanged(nameof(usuarioNuevo)); }
@@ -46,6 +52,11 @@ namespace di.proyecto.clase.ribbon.MVVM {
         public departamento dptoSeleccionado {
             get { return departamento; }
             set { departamento = value; NotifyPropertyChanged(nameof(dptoSeleccionado)); }
+        }
+
+        public grupo grupoSeleccionado {
+            get { return grupo; }
+            set { grupo = value; NotifyPropertyChanged(nameof(grupoSeleccionado)); }
         }
 
         public int mesSeleccionado {
@@ -112,6 +123,8 @@ namespace di.proyecto.clase.ribbon.MVVM {
             get { return validarPassword(usu.password); }
         }
 
+        // Definicion de Metodos *************************************
+
         public void setPass(String pass) {
             usu.password = pass;
         }
@@ -163,6 +176,9 @@ namespace di.proyecto.clase.ribbon.MVVM {
             }
             if (!string.IsNullOrEmpty(textNombreApellido)) {
                 criterios.Add(criterioNombre);
+            }
+            if (grupoSeleccionado != null) {
+                criterios.Add(criterioGrupo);
             }
         }
 

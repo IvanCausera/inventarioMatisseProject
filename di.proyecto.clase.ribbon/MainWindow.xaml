@@ -200,6 +200,11 @@
                             <mat:PackIcon Kind="UserMultiple" Height="30" Width="30" Foreground="Gray"/>
                         </fluent:Button.LargeIcon>
                     </fluent:Button>
+                    <fluent:Button Header="Listado Examen" x:Name="rbtnListaUsuarioExamen" Click="rbtnListaUsuarioExamen_Click">
+                        <fluent:Button.LargeIcon>
+                            <mat:PackIcon Kind="UserMultiple" Height="30" Width="30" Foreground="Gray"/>
+                        </fluent:Button.LargeIcon>
+                    </fluent:Button>
                     <fluent:Button Header="Arbol Grupo" x:Name="rbtnArbolGrupo" Click="rbtnArbolGrupo_Click">
                         <fluent:Button.LargeIcon>
                             <mat:PackIcon Kind="Group" Height="30" Width="30" Foreground="Gray"/>

@@ -11,6 +11,7 @@ using System.Windows.Data;
 
 namespace di.proyecto.clase.ribbon.MVVM {
     class MVArticulo: MVBaseCRUD<articulo> {
+        // Variables privadas ***************************************************************************************
         private inventarioEntities invEnt;
         private articulo art;
         private ArticuloServicio articuloServicio;
@@ -24,6 +25,7 @@ namespace di.proyecto.clase.ribbon.MVVM {
         private Predicate<articulo> criterioFechas; //Filtros individuales
         private Predicate<articulo> criterioMas10;
 
+        // Constructor ***************************************************************************************
         public MVArticulo(inventarioEntities ent, usuario user) {
             this.invEnt = ent;
             articuloServicio = new ArticuloServicio(invEnt);
@@ -58,6 +60,8 @@ namespace di.proyecto.clase.ribbon.MVVM {
             criterioFechas = new Predicate<articulo>(a => a.fechaalta >= fechaInicial && fechaFinal == a.fechaalta);
             criterioMas10 = new Predicate<articulo>(a => a.salida.Count > 20);
         }
+
+        // Getters and Setters ***************************************************************************************
 
         /// <summary>
         /// Guarda la inicial final seleccionada en la interfaz
@@ -116,6 +120,8 @@ namespace di.proyecto.clase.ribbon.MVVM {
         public bool guarda {
             get { return valida(); }
         }
+
+        // Metodos ***************************************************************************************
 
         public bool FiltroFecha(object obj) {
             if (obj == null) return false;

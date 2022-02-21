@@ -173,7 +173,7 @@
                     <DataGridTextColumn Header="USUARIO" Binding="{Binding usuario1}"/>
                     <DataGridTextColumn Header="NUMERO DE SERIE" Binding="{Binding articulo1.numserie}"/>
                     <DataGridTextColumn Header="FECHA DE PRÉSTAMO" Binding="{Binding fechasalida, StringFormat=dd/MM/yyyy}"/>
-                    <DataGridTextColumn Header="FECHA DE DEVOLUCIÓN" Binding="{Binding fechadevolucion, StringFormat=dd/MM/yyyy}"/>
+                    <DataGridTextColumn Header="FECHA   DE DEVOLUCIÓN" Binding="{Binding fechadevolucion, StringFormat=dd/MM/yyyy}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

@@ -1,47 +1,72 @@
-﻿<UserControl x:Class="di.proyecto.clase.ribbon.Frontend.ControlesUsuario.UCUsuario"
+﻿<UserControl x:Class="di.proyecto.clase.ribbon.Frontend.ControlesUsuario.UCUsuarioExamen"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:di.proyecto.clase.ribbon.Frontend.ControlesUsuario"
+             xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
-        <Grid DockPanel.Dock="Top">
+        <Grid DockPanel.Dock="Left" Margin="10"
+              Width="140">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <ComboBox x:Name="comboFiltroRol" Margin="10, 0, 0, 0"
-                      VerticalAlignment="center" 
-                      IsEditable="True" Text="Seleciona un Rol"
-                      ItemsSource="{Binding listaRoles}"
-                      SelectedItem="{Binding rolSeleccionado}"
+            <TextBlock Text="Grupo"
+                       HorizontalAlignment="Left"/>
+            <ComboBox x:Name="cbFiltroGrupo" Margin="0, 5"
+                      Text="Selecciona un grupo"
+                      ItemsSource="{Binding listaGrupos}"
+                      SelectedItem="{Binding grupoSeleccionado}"
+                      SelectionChanged="cbFiltroGrupo_SelectionChanged"
                       DisplayMemberPath="nombre"
-                      SelectionChanged="comboFiltroRol_SelectionChanged"/>
-            <TextBlock Text="Nombre o primer apellido del usuario: "
-                       VerticalAlignment="Center" Margin="15, 0, 0, 0"
-                       Grid.Column="2"/>
-            <TextBox x:Name="txtFiltro" Width="150"
-                     VerticalAlignment="Center" HorizontalAlignment="Left"
-                     TextChanged="txtFiltro_TextChanged"
+                      Grid.Row="1"/>
+            
+            <TextBlock Text="Nombre"
+                       HorizontalAlignment="Left"
+                       Grid.Row="2"/>
+            <TextBox x:Name="tboxFiltroNombre"
                      Text="{Binding textNombreApellido, UpdateSourceTrigger=PropertyChanged}"
-                     Grid.Column="3"/>
-            <Separator Grid.Row="1" Grid.ColumnSpan="4"/>
+                     TextChanged="tboxFiltroNombre_TextChanged"
+                     Width="100"
+                     Grid.Row="3"/>
+        </Grid>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="DATOS DEL DISCO" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="Username" HorizontalAlignment="Left"
+                       Grid.Row="1"/>
+            <TextBox Width="100"
+                     Text="{Binding usuarioNuevo.username}"
+                     Grid.Row="2"/>
         </Grid>
         <Grid>
-            <DataGrid x:Name="dgUsuario" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" IsReadOnly="True"
-                  ItemsSource="{Binding listaUsuarios}"
-                  SelectedItem="{Binding usuarioNuevo}">
+            <DataGrid x:Name="dgUser" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" IsReadOnly="True"
+                      ItemsSource="{Binding listaUsuarios}"
+                      SelectedItem="{Binding usuarioNuevo}">
                 <DataGrid.Columns>
-
                     <DataGridTemplateColumn Header="Nombre">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -91,32 +116,11 @@
 
                     <DataGridTextColumn Header="Departamento"
                                     Binding="{Binding departamento1.nombre}"/>
-                    
+
                     <DataGridTextColumn Header="Grupo"
                                     Binding="{Binding grupo1.nombre}"/>
 
                 </DataGrid.Columns>
-                <DataGrid.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem x:Name="menuEditar" Click="menuEditar_Click">
-                            <MenuItem.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <mat:PackIcon Kind="Edit" Margin="0,0,10,0"/>
-                                    <TextBlock Text="Editar"/>
-                                </StackPanel>
-                            </MenuItem.Header>
-                        </MenuItem>
-                        <MenuItem x:Name="menuBorrar" Click="menuBorrar_Click">
-                            <MenuItem.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <mat:PackIcon Kind="Delete" Margin="0,0,10,0"/>
-                                    <TextBlock Text="Borrar"/>
-                                </StackPanel>
-                            </MenuItem.Header>
-                        </MenuItem>
-                    </ContextMenu>
-                </DataGrid.ContextMenu>
-
             </DataGrid>
         </Grid>
     </DockPanel>
