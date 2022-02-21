@@ -28,7 +28,7 @@ namespace di.proyecto.clase.ribbon.MVVM {
         // Constructor ***********************************
         public MVModeloArticulo(inventarioEntities ent) {
             invEnt = ent;
-            inicializa();
+            inicializa();   
         }
 
         private void inicializa() {
@@ -143,7 +143,7 @@ namespace di.proyecto.clase.ribbon.MVVM {
         }
 
         public void addCriterios() {
-            criterios.Clear();
+            criterios.Clear(); // Importante limpiar lista antes de añadir
             if (tipoSeleccionado != null) {
                 criterios.Add(criterioTipo);
             }

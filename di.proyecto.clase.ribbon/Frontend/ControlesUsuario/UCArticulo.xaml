@@ -18,17 +18,18 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Text="Fecha Inicial: "
                        VerticalAlignment="Center" Margin="15, 0, 0, 0"/>
-            <DatePicker x:Name="dateInicial"
+            <DatePicker x:Name="dateInicial" SelectedDateChanged="dateInicial_SelectedDateChanged"
                 SelectedDate="{Binding fechaInicial}"
-                        Grid.Column="1"/>
+                        Width="100" Grid.Column="1"/>
             <TextBlock Text="Fecha Final: "
                        VerticalAlignment="Center" Margin="15, 0, 0, 0"
-                       Grid.Column="2"/>
-            <DatePicker x:Name="dateFinal"
+                       Width="100" Grid.Column="2"/>
+            <DatePicker x:Name="dateFinal" SelectedDateChanged="dateFinal_SelectedDateChanged"
                 SelectedDate="{Binding fechaFinal}"
                         Grid.Column="3" />
             <Button x:Name="btnFiltrarFechas" Click="btnFiltrarFechas_Click"
@@ -36,10 +37,14 @@
                     Grid.Column="4" HorizontalAlignment="Left">
                 <mat:PackIcon Kind="Filter" Height="20" Width="20"/>
             </Button>
-            <Separator Grid.Row="1" Grid.ColumnSpan="5"/>
+            <CheckBox x:Name="ckbMas10" Content="Mas de 10"
+                      Checked="ckbMas10_Checked" Unchecked="ckbMas10_Unchecked"
+                      Grid.Column="5"/>
+            <Separator Grid.Row="1" Grid.ColumnSpan="6"/>
         </Grid>
         <Grid>
             <DataGrid x:Name="dgArticulo" AutoGenerateColumns="False" CanUserAddRows="False"
+                      ItemsSource="{Binding listaArticulos}"
                   ColumnWidth="*" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nombre Modelo"

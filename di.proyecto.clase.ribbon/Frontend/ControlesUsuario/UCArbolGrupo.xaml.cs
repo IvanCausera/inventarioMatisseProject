@@ -45,8 +45,8 @@ namespace di.proyecto.clase.ribbon.Frontend.ControlesUsuario {
                 DialogoMVVMAddUsuario diag = new DialogoMVVMAddUsuario(invEnt, ((usuario)treeGrupo.SelectedItem));
                 diag.ShowDialog();
             } else {
-                MessageBox.Show("CUIDADO!! mis comidas preferidas todas fallecidas", "MI BOCADILLO HA' PALMADO", MessageBoxButton.OK, MessageBoxImage.Error);
-                //MessageBox.Show("CUIDADO!! ","GESTIÓN USUARIOS", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show("CUIDADO!! mis comidas preferidas todas fallecidas", "MI BOCADILLO HA' PALMADO", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("CUIDADO!! No has seleccionado un usuario","GESTIÓN USUARIOS", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

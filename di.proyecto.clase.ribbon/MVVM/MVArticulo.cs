@@ -19,6 +19,10 @@ namespace di.proyecto.clase.ribbon.MVVM {
         private DateTime fechaFin;
         private salida salidaSel;
         private ServicioGenerico<tipousuario> tipousuarioServicio;
+        private bool mas10;
+        private List<Predicate<articulo>> criterios; //Filtros combinados
+        private Predicate<articulo> criterioFechas; //Filtros individuales
+        private Predicate<articulo> criterioMas10;
 
         public MVArticulo(inventarioEntities ent, usuario user) {
             this.invEnt = ent;
@@ -44,6 +48,15 @@ namespace di.proyecto.clase.ribbon.MVVM {
         private void inicializa() {
             salidaSel = new salida();
             tipousuarioServicio = new ServicioGenerico<tipousuario>(invEnt);
+
+            // Inicializamos los obetos para el filtrado de la tabla
+            criterios = new List<Predicate<articulo>>();
+            inicializaCriterios();
+        }
+
+        private void inicializaCriterios() { //Definicion criterios
+            criterioFechas = new Predicate<articulo>(a => a.fechaalta >= fechaInicial && fechaFinal == a.fechaalta);
+            criterioMas10 = new Predicate<articulo>(a => a.salida.Count > 20);
         }
 
         /// <summary>
@@ -95,6 +108,11 @@ namespace di.proyecto.clase.ribbon.MVVM {
             get { return tipousuarioServicio.getAll().ToList(); }
         }
 
+        public bool checkMas10 {
+            get { return mas10; }
+            set { mas10 = value; NotifyPropertyChanged(nameof(checkMas10)); }
+        }
+
         public bool guarda {
             get { return valida(); }
         }
@@ -104,7 +122,7 @@ namespace di.proyecto.clase.ribbon.MVVM {
 
             bool correcto = false;
             articulo art = (articulo)obj;
-            if (art.fechaalta > fechaInicial && art.fechaalta < fechaFinal) {
+            if (art.fechaalta >= fechaInicial && fechaFinal <= fechaFinal) {
                 correcto = true;
             }
             return correcto;
@@ -149,5 +167,26 @@ namespace di.proyecto.clase.ribbon.MVVM {
             return correcto;
         }
 
+        public void addCriterios() {
+            criterios.Clear(); //Importante limpiar lista
+
+            criterios.Add(criterioFechas);
+
+            if (checkMas10) {
+                criterios.Add(criterioMas10);
+            }
+        }
+
+        public bool FiltroCombinadoCriterios(object obj) {
+            if (obj == null) return false;
+
+            bool correct = true;
+            articulo art = (articulo)obj;
+            if (criterios.Count() != 0) {
+                correct = criterios.TrueForAll(x => x(art));
+            }
+
+            return correct;
+        }
     }
 }
